@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;700&display=swap');
+
+$mobile-breakpoint: 375px;
+
+//COLORS
+$desaturated-dark-cyan: hsl(180, 29%, 50%);
+$background-light-grayish-cyan: hsl(180, 52%, 96%);
+$light-grayish-cyan: hsl(180, 31%, 95%);
+$dark-grayish-cyan: hsl(180, 8%, 52%);
+$very-dark-grayish-cyan: hsl(180, 14%, 20%);
+
+//TYPOGRAPHY
+$body-font-size: 15px;
+$font-normal-weight: 500;
+$font-bold-weight: 700;
+
+//MIXINS
+@mixin flex ($justify, $align, $direction: row, $gap: auto) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+    flex-direction: $direction;
+    gap: $gap;
+}
+
+//REUSABLE CLASS(ES).
+.flex-row-normal{
+    @include flex(space-between, center, row, .9rem);
+
+    @media screen and (max-width: 920px) {
+        flex-wrap: wrap;
+        row-gap: .9rem;
+        align-self: center;
+    }
+}
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'League Spartan', sans-serif;
+    font-size: $body-font-size;
+}
+
+.container{
+    width: min(100vw, 100%);
+    min-height: 100vh;
+    background-color: $background-light-grayish-cyan;
+    position: relative;
+}
+
+header{
+    $size: 4.5rem;
+    width: 100%;
+    height: $size;
+    background-image: url(./Assets/bg-header-desktop.svg);
+    background-color: $dark-grayish-cyan;
+    background-position: center;
+    background-size: cover;
+
+    @media screen and (max-width: 375px) {
+        background-image: url(./Assets/bg-header-mobile.svg);
+    }
+}
+
+.search{
+    background-color: $desaturated-dark-cyan;
+    color: $light-grayish-cyan;
+    text-align: center;
+    width: clamp(200px, 100%, 530px);
+    height: min(37vh, 100%);
+    padding: 2rem;
+    border-radius: .6rem;
+    margin: 3.3rem auto 2rem;
+
+    @media screen and (max-width: 600px) {
+        border-radius: 0;
+    }
+
+    form{
+        @include flex(center, center, row, .8rem);
+        flex-wrap: wrap;
+
+    input{
+        border: 0;
+        border-radius: 2px;
+        height: 1.2rem;
+        width: 70%;
+        padding: 1rem .3rem;
+        font-size: 17px;
+            outline: 0;
+        }
+    }
+
+    .select{
+        margin: 1rem 0;
+
+        li{
+            margin: .5rem 0;
+        }
+    }
+}
+
+
+.list{
+    padding: 4rem 3rem 3rem; 
+    @include flex(center, center, column, 4.2rem);
+    &_job{
+        @include flex(space-between, center, row, auto);
+        width: clamp(200px, 92%, 800px);
+        height: 100%;
+        padding: 1.6rem 2.4rem;
+        border-radius: 4px;
+        background-color: $light-grayish-cyan;
+        box-shadow: 2px 4px .9rem rgba(2, 39, 34, 0.4);
+        transition: all ease-in .3s;
+
+        @media screen and (max-width: 920px) {
+            flex-wrap: wrap;
+            row-gap: 2.4rem;
+        }
+
+        // &:hover{
+        //    transform: translateY(-5.6%); 
+        // }
+
+        &_details{
+            @include flex(space-around, center, row, 1.25rem);
+
+            img{
+                width: 50px;
+            }
+
+            .company{
+                @include flex(space-between, flex-start, column, 1rem);
+
+                &-details{
+
+                    $padding: .4rem .6rem;
+                    $border-radius: 15px;
+
+                    &_new{
+                        background-color: $desaturated-dark-cyan;
+                        color: $light-grayish-cyan;
+                        padding: $padding;
+                        border-radius: $border-radius;
+                    }
+
+                    &_name{
+                        color: $desaturated-dark-cyan;
+                        font-weight: $font-normal-weight;
+                    }
+
+                    &_featured{
+                        background-color: $very-dark-grayish-cyan;
+                        color: $light-grayish-cyan;
+                        border-radius: $border-radius;
+                        padding: $padding;
+                    }
+                }
+
+                &_position{
+                    font-weight: $font-bold-weight;
+                }
+
+                &_timeline{
+                    opacity: .56;
+                }
+            }
+        }
+
+        &_levels{
+            &>div{
+                //display: none;
+                color: $desaturated-dark-cyan;
+                background-color: rgba(136, 124, 124, 0.1);
+                font-weight: $font-normal-weight;
+                padding: .6rem;
+                border-radius: 4px;
+                cursor: pointer;
+                transition: all ease-in .25s;
+
+                &:hover{
+                    background-color: $desaturated-dark-cyan;
+                    color: $light-grayish-cyan;
+                }
+            }
+        }
+        
+    }
+}
