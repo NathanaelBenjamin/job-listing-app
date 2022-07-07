@@ -3,6 +3,7 @@ import "./styles.scss";
 import ProfessionalRole from './Components/ProfessionalRole';
 import data from "./Assets/data.json";
 import SearchBar from "./Components/SearchBar";
+import NoSearch from './Components/NoSearch';
 import { SelectedItemsContext } from "./Contexts/SelectedItemsContext";
 
 
@@ -97,6 +98,7 @@ const App = () => {
     //FINAL RETURN STATEMENT FOR THE FILTER FUNCTION.
     return result();
   });
+  
 
   return (
     <div className='container'>
@@ -111,7 +113,7 @@ const App = () => {
 
         <div className="list">
           {
-            searchValue ? filteredData.map(job => {
+            filteredData.length > 0 ? (searchValue ? filteredData.map(job => {
                 return <ProfessionalRole 
                 key={job.id}
                 position={job.position}
@@ -142,7 +144,7 @@ const App = () => {
                 isNew={job.new}
                 isFeatured={job.featured}
               />  
-            })
+            })) : <NoSearch />
           }
         </div>
 
