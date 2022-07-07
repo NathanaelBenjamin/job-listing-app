@@ -23,6 +23,21 @@ $font-bold-weight: 700;
     gap: $gap;
 }
 
+@mixin selected-items($border-radius: 4px){
+    color: $desaturated-dark-cyan;
+    background-color: rgba(136, 124, 124, 0.1);
+    font-weight: $font-normal-weight;
+    padding: .6rem;
+    border-radius: $border-radius;
+    cursor: pointer;
+    transition: all ease-in .15s;
+
+    &:hover{
+        background-color: $desaturated-dark-cyan;
+        color: $light-grayish-cyan;
+    }
+}
+
 //REUSABLE CLASS(ES).
 .flex-row-normal{
     @include flex(space-between, center, row, .9rem);
@@ -100,11 +115,30 @@ header{
     }
 
     .selected{
+        @include flex(center, center, row, 2.3rem);
         margin: 1rem 0;
-
+        padding: 1rem 2rem;
+        flex-wrap: wrap;
         &_items{
+            /* top left, top right, bottom right, bottom left */
+
             position: relative;
-            
+            @include selected-items(4px 0 0px 4px);
+            &:hover::after{
+                background-color: $light-grayish-cyan;
+                content: url(./Assets/icon-remove-green.svg);
+            }
+            &::after{
+                position: absolute;
+                content: url(./Assets/icon-remove.svg);
+                background-color: $desaturated-dark-cyan;
+                right: -1.7rem;
+                top: 0;
+                bottom: 0;
+                // height: 100%;
+                padding: .4rem;
+                @include flex(center, center, row, auto);
+            }
         }
     }
 }
@@ -127,10 +161,6 @@ header{
             flex-wrap: wrap;
             row-gap: 2.4rem;
         }
-
-        // &:hover{
-        //    transform: translateY(-5.6%); 
-        // }
 
         &_details{
             @include flex(space-around, center, row, 1.25rem);
@@ -179,19 +209,7 @@ header{
 
         &_levels{
             &>div{
-                //display: none;
-                color: $desaturated-dark-cyan;
-                background-color: rgba(136, 124, 124, 0.1);
-                font-weight: $font-normal-weight;
-                padding: .6rem;
-                border-radius: 4px;
-                cursor: pointer;
-                transition: all ease-in .25s;
-
-                &:hover{
-                    background-color: $desaturated-dark-cyan;
-                    color: $light-grayish-cyan;
-                }
+                @include selected-items();  
             }
         }
         
