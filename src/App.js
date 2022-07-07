@@ -79,7 +79,7 @@ const App = () => {
       return tool.toLowerCase();
     });
     function checkSearchedValues(input){
-      if(input && (job.role.toLowerCase().includes(input) || programmingLanguages.toString().includes(input) || tools.toString().includes(input))){
+      if(input && (job.role.toLowerCase().includes(input) || job.position.toLowerCase().includes(input) || job.level.toLowerCase().includes(input) ||programmingLanguages.toString().includes(input) || tools.toString().includes(input))){
         return job;
       }
     }

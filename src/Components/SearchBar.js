@@ -13,8 +13,11 @@ const SearchBar = (props) => {
         <form
         onSubmit={(event) => { event.preventDefault(); }}
         >
-          <label htmlFor={searchId}>Search by role or languages</label>
-          <input type="search" name="search" id={searchId} 
+          
+          <input type="search" name="search" id={searchId}
+
+            placeholder="Search by role, tools or languages."
+
             onChange={(event) => {
               props.getValue(event.target.value);
             }}
@@ -25,14 +28,14 @@ const SearchBar = (props) => {
           />
         </form>
 
-        <div className="select">
+        <div className="selected">
             {
                 selectedOptions && selectedOptions.map(item => {
-                    return <li
+                    return <div className='selected_items'
                     onClick={ (event) => {
                         handleDelete(event.target.innerText);
                     } } 
-                    >{ item }</li>
+                    >{ item }</div>
                 })
             }
         </div>

@@ -64,14 +64,14 @@ header{
 }
 
 .search{
-    background-color: $desaturated-dark-cyan;
-    color: $light-grayish-cyan;
+    background-color: $light-grayish-cyan;
+    color: $desaturated-dark-cyan;
     text-align: center;
     width: clamp(200px, 100%, 530px);
     height: min(37vh, 100%);
     padding: 2rem;
     border-radius: .6rem;
-    margin: 3.3rem auto 2rem;
+    margin: -2.9rem auto 2rem;
 
     @media screen and (max-width: 600px) {
         border-radius: 0;
@@ -82,21 +82,29 @@ header{
         flex-wrap: wrap;
 
     input{
+        background-color: $desaturated-dark-cyan;
+        color: $light-grayish-cyan;
         border: 0;
         border-radius: 2px;
-        height: 1.2rem;
+        height: 1.4rem;
         width: 70%;
-        padding: 1rem .3rem;
+        padding: 1rem .5rem;
         font-size: 17px;
-            outline: 0;
+        outline: 0;
+
+        &::placeholder, &:focus{
+            color: $light-grayish-cyan;
+            font-weight: 400;
         }
+        } 
     }
 
-    .select{
+    .selected{
         margin: 1rem 0;
 
-        li{
-            margin: .5rem 0;
+        &_items{
+            position: relative;
+            
         }
     }
 }
